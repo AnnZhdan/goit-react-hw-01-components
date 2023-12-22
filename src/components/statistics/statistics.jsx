@@ -1,22 +1,16 @@
-import data from '../../data/data.json';
-import css from '../statistics/statistics.module.css';
-
-const StatisticsItem = () => {
-  return data.map(el => (
-    <li className={css.item} key={el.id}>
-      <span className={css.label}>{el.label}</span>
-      <span className={css.percentage}>{el.percentage}%</span>
-    </li>
-  ));
-};
-
-const Statistics = ({ title, data }) => (
-  <section className={css.statistics}>
-    {title && <h2 className={css.title}>{title}</h2>}
-    <ul className={css.stat_list}>
-      <StatisticsItem />
-    </ul>
-  </section>
-);
-
-export default Statistics;
+import styles from './Statistics.module.css';
+export function Statistics({ title, stats }) {
+  return (
+    <section className={styles.statistics}>
+      {title && <h2 className={styles.title}>{title}</h2>}
+      <ul className={styles.statList}>
+        {stats.map(stat => (
+          <li className={styles.item} key={stat.id}>
+            <span className={styles.label}>{stat.label}</span>
+            <span className={styles.percentage}>{stat.percentage}%</span>
+          </li>
+        ))}
+      </ul>
+    </section>
+  );
+}

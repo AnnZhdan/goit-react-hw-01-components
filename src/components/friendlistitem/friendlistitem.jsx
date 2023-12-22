@@ -1,14 +1,17 @@
-import friends from '../../data/friends.json';
-import css from './friendListItem.module.css';
-
-const FriendListItem = () => {
-  return friends.map(({ avatar, name, isOnline, id }) => (
-    <li className={css.item} key={id}>
-      <span className={isOnline ? `${css.is_online}` : `${css.status}`}></span>
-      <img className={css.avatar} src={avatar} alt="User avatar" width="48" />
-      <p className={css.name}>{name}</p>
+import styles from './FriendListItem.module.css';
+export function FriendListItem({ friend }) {
+  return (
+    <li className={styles.item}>
+      <span className={friend.isOnline ? styles.online : styles.offline}>
+        &nbsp;
+      </span>
+      <img
+        className={styles.avatar}
+        src={friend.avatar}
+        alt="User avatar"
+        width="48"
+      />
+      <p className={styles.name}>{friend.name}</p>
     </li>
-  ));
-};
-
-export default FriendListItem;
+  );
+}
